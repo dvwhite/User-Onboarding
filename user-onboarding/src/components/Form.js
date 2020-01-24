@@ -14,30 +14,34 @@ const UserForm = ({ errors, touched, values, status }) => {
     <div className='onboarding-form'>
       <Form>
         <h1>User Information</h1>
-        <div class='text-fields'>
-          <Field 
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={values.name}
-          />
-          {touched.name && errors.name && <p>{errors.name}</p>}
-
-          <Field 
-            type="text"
-            name="email"
-            placeholder="Email"
-            value={values.email}
-          />
-          {touched.email && errors.email && <p>{errors.email}</p>}
-
-          <Field 
-            type="text"
-            name="password"
-            placeholder="Password"
-            value={values.password}
-          />
-          {touched.password && errors.password && <p>{errors.password}</p>}
+        <div className='text-fields'>
+          <div className='field'>
+            <Field 
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={values.name}
+            />
+            {touched.name && errors.name && <p>{errors.name}</p>}
+          </div>
+          <div className='field'>
+            <Field 
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={values.email}
+            />
+            {touched.email && errors.email && <p>{errors.email}</p>}
+          </div>
+          <div className='field'>
+            <Field 
+              type="text"
+              name="password"
+              placeholder="Password"
+              value={values.password}
+            />
+            {touched.password && errors.password && <p>{errors.password}</p>}
+          </div>
         </div>
         <label>
           I accept the TOS
