@@ -6,6 +6,10 @@ import axios from 'axios';
 const UserForm = ({ errors, touched, values, status }) => {
   const [users, setUsers] = useState([]);
 
+  useEffect(() => {
+    status && setUsers(users => [...users, status]);
+  }, [status]);
+
   return (
     <div className='onboarding-form'>
       <Form>
@@ -50,7 +54,7 @@ const UserForm = ({ errors, touched, values, status }) => {
           <li>Name: {user.name}</li>
           <li>Email: {user.email}</li>
           <li>Password: {user.password}</li>
-          <li>Terms of Services: {user.tos}</li>
+          <li>Terms of Services Checked: {user.tos? "Yes" : "No"}</li>
         </ul>
       ))}
     </div>
@@ -79,7 +83,7 @@ const FormikUserForm = withFormik({
     axios
       .post("https://reqres.in/api/users", values)
       .then(res => {
-        console.log("Success:", res);
+        // console.log("Success:", res);
         setStatus(res.data);
         resetForm();
       })
