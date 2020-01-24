@@ -34,13 +34,13 @@ const UserForm = ({ errors, touched, values, status }) => {
         />
         {touched.password && errors.password && <p>{errors.password}</p>}
 
-        <Field 
-          type="checkbox"
-          name="tos"
-          placeholder="Terms of Service"
-          value={values.tos}
-        />
-        {touched.tos && errors.tos && <p>{errors.tos}</p>}
+        <label>
+          <Field 
+            type="checkbox"
+            name="tos"
+            value={values.checkbox}
+          />
+        </label>
 
         <button type="submit">Submit</button>
       </Form>
