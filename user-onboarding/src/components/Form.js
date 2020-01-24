@@ -14,49 +14,54 @@ const UserForm = ({ errors, touched, values, status }) => {
     <div className='onboarding-form'>
       <Form>
         <h1>User Information</h1>
-        <Field 
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={values.name}
-        />
-        {touched.name && errors.name && <p>{errors.name}</p>}
+        <div class='text-fields'>
+          <Field 
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={values.name}
+          />
+          {touched.name && errors.name && <p>{errors.name}</p>}
 
-        <Field 
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={values.email}
-        />
-        {touched.email && errors.email && <p>{errors.email}</p>}
+          <Field 
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={values.email}
+          />
+          {touched.email && errors.email && <p>{errors.email}</p>}
 
-        <Field 
-          type="text"
-          name="password"
-          placeholder="Password"
-          value={values.password}
-        />
-        {touched.password && errors.password && <p>{errors.password}</p>}
-
+          <Field 
+            type="text"
+            name="password"
+            placeholder="Password"
+            value={values.password}
+          />
+          {touched.password && errors.password && <p>{errors.password}</p>}
+        </div>
         <label>
+          I accept the TOS
           <Field 
             type="checkbox"
             name="tos"
             value={values.checkbox}
           />
         </label>
-
-        <button type="submit">Submit</button>
+        <div className='btn-container'>
+          <button type="submit">Submit</button>
+        </div>
       </Form>
 
-      {users.map(user => (
-        <ul>
-          <li>Name: {user.name}</li>
-          <li>Email: {user.email}</li>
-          <li>Password: {user.password}</li>
-          <li>Terms of Services Checked: {user.tos? "Yes" : "No"}</li>
-        </ul>
-      ))}
+      <div className='card-container'>
+        {users.map(user => (
+          <div className="card">
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Password: {user.password}</p>
+            <p>Accepted the TOS: {user.tos ? "Yes" : "No"}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -83,7 +88,6 @@ const FormikUserForm = withFormik({
     axios
       .post("https://reqres.in/api/users", values)
       .then(res => {
-        // console.log("Success:", res);
         setStatus(res.data);
         resetForm();
       })
